@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predictive Maintenance Model | Richards C. Sunny</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">Richards Chizhuthanickel Sunny</div>
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#artifacts">Artifacts</a>
+        <a href="index.html#resume">Resume</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <p class="eyebrow">Artifact 4</p>
+    <h1>Predictive Maintenance Model for Equipment Failure Risk</h1>
+    <p class="lead">
+      This project applies machine learning to a predictive maintenance problem using the AI4I 2020 dataset.
+      The goal was to predict whether a machine would fail based on operational and wear related variables such as
+      air temperature, process temperature, rotational speed, torque, tool wear, and machine type.
+    </p>
+
+    <section class="section">
+      <h2>Project Overview</h2>
+      <p>
+        Predictive maintenance is an important real world application of machine learning in engineering and manufacturing.
+        Instead of waiting for a machine to fail, companies can use data to estimate risk earlier and make more informed
+        maintenance decisions. In this project, I used the AI4I 2020 Predictive Maintenance Dataset to explore whether
+        machine failure could be predicted from measurable operating conditions and wear indicators.
+      </p>
+      <p>
+        The dataset contains 10,000 observations and includes features such as air temperature, process temperature,
+        rotational speed, torque, tool wear, and product type. I built a Random Forest classification model and evaluated
+        it using accuracy, ROC AUC, recall, and the confusion matrix.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Tools and Methods</h2>
+      <ul>
+        <li>Python</li>
+        <li>Pandas</li>
+        <li>Scikit learn</li>
+        <li>Matplotlib</li>
+        <li>Random Forest Classifier</li>
+        <li>Classification metrics and feature importance analysis</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Key Results</h2>
+      <p>
+        Accuracy: 0.98
+      </p>
+      <p>
+        ROC AUC: 0.963
+      </p>
+      <p>
+        Class 1 precision: 0.91
+      </p>
+      <p>
+        Class 1 recall: 0.46
+      </p>
+      <p>
+        Confusion matrix: [[1929, 3], [37, 31]]
+      </p>
+      <p>
+        These results show that the model performed strongly overall and separated failure from non failure cases well.
+        However, the recall for the failure class was lower than desired, which means a substantial number of actual
+        failures were missed. In predictive maintenance, this matters because missed failures can lead to downtime or
+        equipment damage.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Feature Importance</h2>
+      <img class="artifact-image" src="assets/ai4i_feature_importance.png" alt="Feature importance plot for predictive maintenance model" />
+      <p>
+        The most influential variables were rotational speed, torque, and tool wear, followed by air temperature and
+        process temperature. These findings are meaningful from an engineering perspective because they reflect operating
+        load, mechanical stress, and wear related conditions.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>What I Learned</h2>
+      <p>
+        This project helped me understand that strong overall accuracy does not always mean a model is fully suitable for
+        the real decision context. In predictive maintenance, missing true failures may be more costly than issuing false
+        alarms. Because of that, evaluation must go beyond accuracy alone and include recall, ROC AUC, and the confusion matrix.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Limitations and Future Improvement</h2>
+      <p>
+        One limitation of the current model is class imbalance, since failure cases are much fewer than non failure cases.
+        A useful next step would be to improve recall for the failure class by using class weighting, resampling methods,
+        or threshold tuning. Future work could also compare additional models and build a simple dashboard for maintenance alerts.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Skills Demonstrated</h2>
+      <ul>
+        <li>Data preprocessing</li>
+        <li>Classification modeling</li>
+        <li>Model evaluation</li>
+        <li>Feature importance interpretation</li>
+        <li>Engineering and business insight</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Richards C. Sunny. Built as a professional portfolio site.</p>
+    </div>
+  </footer>
+</body>
+</html>
