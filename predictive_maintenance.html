@@ -55,30 +55,31 @@
       </ul>
     </section>
 
-    <section class="section">
-      <h2>Key Results</h2>
-      <p>
-        Accuracy: 0.98
-      </p>
-      <p>
-        ROC AUC: 0.963
-      </p>
-      <p>
-        Class 1 precision: 0.91
-      </p>
-      <p>
-        Class 1 recall: 0.46
-      </p>
-      <p>
-        Confusion matrix: [[1929, 3], [37, 31]]
-      </p>
-      <p>
-        These results show that the model performed strongly overall and separated failure from non failure cases well.
-        However, the recall for the failure class was lower than desired, which means a substantial number of actual
-        failures were missed. In predictive maintenance, this matters because missed failures can lead to downtime or
-        equipment damage.
-      </p>
-    </section>
+<section class="section">
+  <h2>Key Results</h2>
+  <p>
+    Accuracy: 0.98
+  </p>
+  <p>
+    ROC AUC: 0.963
+  </p>
+  <p>
+    Class 1 precision: 0.91
+  </p>
+  <p>
+    Class 1 recall: 0.46
+  </p>
+  <p>
+    Confusion matrix: [[1929, 3], [37, 31]]
+  </p>
+
+  <img class="artifact-image" src="assets/ai4i_confusion_matrix.png" alt="Confusion matrix for predictive maintenance model" />
+
+  <p>
+    The confusion matrix shows that the model correctly identified most non failure cases, but it still missed a meaningful number of actual failures.
+    This is important in predictive maintenance because missed failures can lead to unplanned downtime or equipment damage.
+  </p>
+</section>
 
     <section class="section">
       <h2>Feature Importance</h2>
