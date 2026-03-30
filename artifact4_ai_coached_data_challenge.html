@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artifact 4 | AI-Coached Data Challenge</title>
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --panel:#ffffff;
+      --panel-soft:#f9fbff;
+      --text:#183049;
+      --muted:#5f7288;
+      --line:#d9e2ef;
+      --primary:#2457c5;
+      --primary-2:#6c8ff0;
+      --accent:#0f766e;
+      --shadow:0 18px 40px rgba(29, 52, 84, 0.10);
+      --radius:22px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Inter","Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(108,143,240,.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(15,118,110,.10), transparent 22%),
+        linear-gradient(180deg, #f7f9fd 0%, #eef3fa 100%);
+      line-height:1.7;
+    }
+
+    a{color:var(--primary); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .hero-wrap{
+      padding:38px 0 24px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(36,87,197,.98), rgba(108,143,240,.88)),
+        linear-gradient(180deg,#2558c6,#4f78e4);
+      color:#fff;
+      border-radius:32px;
+      box-shadow:0 22px 55px rgba(36,87,197,.24);
+      padding:42px 40px 34px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:auto -90px -90px auto;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      filter:blur(2px);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      font-size:13px;
+      letter-spacing:.02em;
+      font-weight:600;
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      line-height:1.1;
+      letter-spacing:-.03em;
+      max-width:920px;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:860px;
+      color:rgba(255,255,255,.92);
+      font-size:1.03rem;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.4fr .9fr;
+      gap:28px;
+      align-items:end;
+    }
+
+    .stat-panel{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:16px 16px 14px;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat .label{
+      font-size:.82rem;
+      color:rgba(255,255,255,.80);
+      margin-bottom:6px;
+    }
+
+    .stat .value{
+      font-size:1.5rem;
+      font-weight:750;
+      color:#fff;
+      line-height:1.1;
+    }
+
+    .top-nav{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .top-nav a{
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.92rem;
+      font-weight:600;
+    }
+
+    .section{
+      margin:22px 0 0;
+      background:var(--panel);
+      border:1px solid rgba(217,226,239,.9);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .section-head{
+      padding:26px 28px 12px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:1.55rem;
+      letter-spacing:-.02em;
+    }
+
+    .section-body{
+      padding:0 28px 28px;
+    }
+
+    .lead{
+      font-size:1.02rem;
+      color:var(--muted);
+      margin-top:10px;
+      max-width:900px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+    }
+
+    .callout{
+      background:linear-gradient(180deg, #f7faff, #f1f6ff);
+      border:1px solid #d8e5ff;
+      border-radius:22px;
+      padding:20px 20px 18px;
+    }
+
+    .callout h3, .card h3{
+      margin:0 0 10px;
+      font-size:1.05rem;
+    }
+
+    .card{
+      background:var(--panel-soft);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px;
+      height:100%;
+    }
+
+    .quote{
+      font-size:1.08rem;
+      line-height:1.75;
+      color:var(--text);
+      margin:0;
+      font-style:italic;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-top:12px;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      background:#eef3ff;
+      border:1px solid #d8e3fb;
+      color:#28456a;
+      font-size:.88rem;
+      margin:0 8px 10px 0;
+      font-weight:600;
+    }
+
+    .steps{
+      counter-reset:step;
+      display:grid;
+      gap:16px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .steps li{
+      position:relative;
+      padding:18px 18px 18px 70px;
+      background:var(--panel-soft);
+      border:1px solid var(--line);
+      border-radius:20px;
+    }
+
+    .steps li::before{
+      counter-increment:step;
+      content:counter(step);
+      position:absolute;
+      left:18px;
+      top:18px;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#fff;
+      font-weight:700;
+      box-shadow:0 8px 18px rgba(36,87,197,.20);
+    }
+
+    .steps strong{
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .results-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-bottom:20px;
+    }
+
+    .result-box{
+      background:linear-gradient(180deg,#fbfdff,#f5f8fd);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .result-box .k{
+      color:var(--muted);
+      font-size:.86rem;
+      margin-bottom:6px;
+    }
+
+    .result-box .v{
+      font-size:1.5rem;
+      font-weight:750;
+      line-height:1.15;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:.96rem;
+      overflow:hidden;
+      border-radius:18px;
+    }
+
+    thead th{
+      text-align:left;
+      background:#eef3ff;
+      color:#234770;
+      border-bottom:1px solid #d7e2f6;
+      padding:14px 14px;
+      font-size:.9rem;
+    }
+
+    tbody td{
+      padding:14px 14px;
+      border-bottom:1px solid #edf1f7;
+      vertical-align:top;
+    }
+
+    tbody tr:last-child td{border-bottom:none}
+
+    .code-list{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .code-chip{
+      background:#0f172a;
+      color:#e5edff;
+      border-radius:16px;
+      padding:12px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size:.88rem;
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-note{
+      text-align:center;
+      color:var(--muted);
+      font-size:.93rem;
+      padding:30px 0 44px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .two-col,
+      .mini-grid,
+      .results-grid,
+      .code-list{
+        grid-template-columns:1fr;
+      }
+      .hero{padding:34px 24px 28px}
+      .section-head{padding:22px 20px 10px}
+      .section-body{padding:0 20px 22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container hero-wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Artifact 4 • AI/ML Course Portfolio</div>
+          <h1>AI-Coached Data Challenge: Sensitivity Analysis for Missing-Value Imputation</h1>
+          <p>
+            A machine learning challenge in which I used an AI chatbot coach to sharpen the experimental design,
+            implement the workflow in Python, and validate whether mean imputation for <strong>studytime</strong>
+            was stable enough for student-grade prediction using the UCI Student Performance dataset.
+          </p>
+          <div class="top-nav">
+            <a href="#overview">Overview</a>
+            <a href="#method">Method</a>
+            <a href="#results">Results</a>
+            <a href="#learning">Learning</a>
+          </div>
+        </div>
+
+        <div class="stat-panel">
+          <div class="stat">
+            <div class="label">Dataset</div>
+            <div class="value">UCI Student Performance</div>
+          </div>
+          <div class="stat">
+            <div class="label">Target Variable</div>
+            <div class="value">G3 Final Grade</div>
+          </div>
+          <div class="stat">
+            <div class="label">Imputation Test</div>
+            <div class="value">Mean Imputation on <code>studytime</code></div>
+          </div>
+          <div class="stat">
+            <div class="label">Primary Metric</div>
+            <div class="value">RMSE + Delta Statistics</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main class="container">
+    <section class="section" id="overview">
+      <div class="section-head">
+        <h2>Overview</h2>
+      </div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <p class="lead">
+              This artifact focuses on a practical machine learning question that often gets treated too casually:
+              <strong>how to decide whether an imputation method is acceptable before using it in a final predictive model</strong>.
+              Instead of choosing a fill strategy by convenience, I designed a sensitivity-analysis framework to test
+              whether the imputation would meaningfully alter model behaviour.
+            </p>
+            <p>
+              The project was built through an interactive AI-coaching workflow. The chatbot did not simply produce an answer;
+              it helped me refine the structure of the experiment, challenge unclear reasoning, and translate the method into
+              working Python code. The result was a reproducible evaluation process with interpretable metrics and a defensible
+              imputation decision.
+            </p>
+          </div>
+          <aside class="callout">
+            <h3>Why this artifact matters</h3>
+            <p class="quote">
+              “In analytics and machine learning, small preprocessing decisions can have meaningful downstream effects,
+              and those decisions deserve evidence, not convenience.”
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Challenge and Dataset</h2>
+      </div>
+      <div class="section-body">
+        <div class="mini-grid">
+          <div class="card">
+            <h3>Problem</h3>
+            <p>
+              If a feature contains missing values, how can we test whether a chosen imputation method changes
+              predictions too much to trust?
+            </p>
+          </div>
+          <div class="card">
+            <h3>Dataset Choice</h3>
+            <p>
+              I selected the <strong>UCI Student Performance (Portugal)</strong> dataset and worked with the
+              <code>student-por.csv</code> file.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Modeling Setup</h3>
+            <p>
+              The target was <strong>G3</strong> (final grade), and the imputation column was
+              <strong>studytime</strong>, with missingness introduced for the test framework.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="section-head">
+        <h2>Method and Experimental Design</h2>
+      </div>
+      <div class="section-body">
+        <p class="lead">
+          The core of the project was a sensitivity-analysis workflow. I did not want to assume that mean imputation
+          was acceptable simply because it was easy to apply.
+        </p>
+
+        <ol class="steps">
+          <li>
+            <strong>Create the testing structure</strong>
+            Treat the full dataset as <strong>D0</strong>. Build a complete-case subset <strong>D1</strong>, then split it into
+            <strong>S_base</strong> and <strong>S_mask</strong>.
+          </li>
+          <li>
+            <strong>Train a baseline model</strong>
+            Use <strong>S_base</strong> with true values to train the model and generate baseline predictions
+            <strong>R0</strong> for the masked subset.
+          </li>
+          <li>
+            <strong>Apply imputation and retrain</strong>
+            Impute the masked values in <strong>S_mask</strong> using mean imputation, combine
+            <strong>S_base + imputed S_mask</strong>, retrain the model, and generate new predictions <strong>R1</strong>.
+          </li>
+          <li>
+            <strong>Measure prediction shift</strong>
+            Compute the distribution of <strong>Δ = R1 - R0</strong> and summarize it using mean shift,
+            standard deviation, mean absolute shift, and the 95th percentile.
+          </li>
+          <li>
+            <strong>Judge acceptability</strong>
+            Compare the statistics against thresholds and use RMSE to determine whether the imputation method is stable enough.
+          </li>
+        </ol>
+
+        <div class="two-col" style="margin-top:18px;">
+          <div class="card">
+            <h3>Why Option 1 was chosen</h3>
+            <p>
+              I selected the version that <strong>retrained the model after imputation</strong> because I wanted to test
+              how imputed values affect model learning itself, not only how they affect a single prediction pass.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Role of the AI coach</h3>
+            <p>
+              The chatbot was most useful in clarifying the structure of the experiment, prompting me to choose a primary metric,
+              and helping convert the final design into executable Python code. I also corrected the chatbot when it misunderstood
+              my initial procedure, which made the collaboration more iterative and technically meaningful.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Implementation</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          The experiment was implemented in Python using a <strong>RandomForestRegressor</strong>, simple mean imputation,
+          cross-validation, and RMSE-based evaluation. The technical process also involved debugging environment issues,
+          including an error related to <code>mean_squared_error</code> and a scoring-string issue in scikit-learn.
+          That debugging work was part of the real learning value of the exercise.
+        </p>
+
+        <div class="code-list">
+          <div class="code-chip">pandas</div>
+          <div class="code-chip">NumPy</div>
+          <div class="code-chip">scikit-learn</div>
+          <div class="code-chip">RandomForestRegressor</div>
+          <div class="code-chip">SimpleImputer</div>
+          <div class="code-chip">Cross-validation</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-head">
+        <h2>Results</h2>
+      </div>
+      <div class="section-body">
+        <div class="results-grid">
+          <div class="result-box">
+            <div class="k">RMSE before imputation</div>
+            <div class="v">1.3317</div>
+          </div>
+          <div class="result-box">
+            <div class="k">RMSE after imputation</div>
+            <div class="v">0.5044</div>
+          </div>
+          <div class="result-box">
+            <div class="k">RMSE change</div>
+            <div class="v">-0.8273</div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Observed Value</th>
+              <th>Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mean prediction shift</td>
+              <td>-0.0196</td>
+              <td>Very small average directional bias after retraining.</td>
+            </tr>
+            <tr>
+              <td>Standard deviation of shift</td>
+              <td>0.8647</td>
+              <td>Prediction movement remained within the chosen tolerance band.</td>
+            </tr>
+            <tr>
+              <td>Mean absolute shift</td>
+              <td>0.5043</td>
+              <td>Typical prediction difference was modest on the 0–20 grade scale.</td>
+            </tr>
+            <tr>
+              <td>95th percentile absolute shift</td>
+              <td>1.2045</td>
+              <td>Most prediction shifts remained small, even in the upper tail.</td>
+            </tr>
+            <tr>
+              <td>Cross-validated RMSE on S_base</td>
+              <td>1.2028 (SD 0.2914)</td>
+              <td>Baseline model error was stable and aligned with the sensitivity test.</td>
+            </tr>
+            <tr>
+              <td>Sample sizes</td>
+              <td>S_base = 551, S_mask = 98</td>
+              <td>Sufficient split to test imputation sensitivity in a controlled way.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="two-col" style="margin-top:20px;">
+          <div class="card">
+            <h3>Threshold outcome</h3>
+            <p>
+              All threshold checks passed. Under this framework, the tested mean-imputation method was considered acceptable
+              for the selected feature and dataset.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Decision</h3>
+            <p>
+              Based on the evidence, the method did not introduce large or unstable prediction shifts, so it could be justified
+              for final use with documented assumptions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="learning">
+      <div class="section-head">
+        <h2>What I Learned</h2>
+      </div>
+      <div class="section-body">
+        <div class="two-col">
+          <div>
+            <p>
+              This challenge changed the way I think about missing data in machine learning. It showed me that even a simple
+              imputation method can be examined more carefully through a structured experiment instead of being accepted as a
+              routine preprocessing step.
+            </p>
+            <p>
+              It also reinforced that AI support is most valuable when used critically. The strongest part of the process was not
+              instant answer generation, but the iterative refinement of definitions, assumptions, thresholds, and implementation details.
+            </p>
+          </div>
+          <aside class="card">
+            <h3>Skills demonstrated</h3>
+            <span class="pill">Machine learning reasoning</span>
+            <span class="pill">Experimental design</span>
+            <span class="pill">Sensitivity analysis</span>
+            <span class="pill">Python implementation</span>
+            <span class="pill">RMSE evaluation</span>
+            <span class="pill">Cross-validation</span>
+            <span class="pill">Debugging</span>
+            <span class="pill">Human-AI collaboration</span>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Artifact 4 • Prepared as part of an AI/ML professional portfolio showcasing applied reasoning, implementation, and reflective learning.
+    </p>
+  </main>
+</body>
+</html>
