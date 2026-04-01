@@ -3,194 +3,288 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Richards Chizhuthanickel Sunny | Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Richards Chizhuthanickel Sunny | Professional Portfolio</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;--panel:#ffffff;--panel-soft:#f9fbff;--line:#dce6f2;--text:#17324d;--muted:#61758b;
+      --primary:#1f5dbd;--primary-2:#5b88e8;--accent:#0f766e;--accent-soft:#eaf8f5;
+      --shadow:0 18px 45px rgba(23,50,77,.10);--radius:24px;--max:1160px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:"Inter","Segoe UI",Roboto,Arial,sans-serif;color:var(--text);line-height:1.7;
+      background:radial-gradient(circle at top left, rgba(91,136,232,.13), transparent 28%),
+                 radial-gradient(circle at top right, rgba(15,118,110,.08), transparent 22%),
+                 linear-gradient(180deg,#f8fbff 0%, #eef3f9 100%);
+    }
+    a{color:var(--primary);text-decoration:none} a:hover{text-decoration:underline}
+    .container{width:min(var(--max), calc(100% - 32px));margin:0 auto}
+    .site-header{position:sticky;top:0;z-index:100;backdrop-filter: blur(12px);background:rgba(248,251,255,.82);border-bottom:1px solid rgba(220,230,242,.9)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}
+    .brand{font-weight:800;letter-spacing:-.02em;font-size:1.08rem}
+    nav{display:flex;flex-wrap:wrap;gap:16px} nav a{color:var(--muted);font-weight:600;font-size:.95rem}
+    .hero-wrap{padding:34px 0 24px}
+    .hero{background:linear-gradient(135deg, rgba(31,93,189,.97), rgba(91,136,232,.90));color:#fff;border-radius:34px;overflow:hidden;position:relative;box-shadow:0 25px 60px rgba(31,93,189,.22);padding:44px 40px}
+    .hero::after{content:"";position:absolute;right:-80px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.09)}
+    .hero-grid{display:grid;grid-template-columns:1.35fr .75fr;gap:28px;align-items:center;position:relative;z-index:1}
+    .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);font-size:.82rem;font-weight:700;margin-bottom:16px}
+    h1{margin:0 0 12px;font-size:clamp(2.1rem, 4vw, 3.35rem);line-height:1.08;letter-spacing:-.03em}
+    .hero p{margin:0 0 16px;color:rgba(255,255,255,.92);font-size:1.02rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+    .button{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;text-decoration:none}
+    .button.primary{background:#fff;color:var(--primary);border-color:#fff}
+    .hero-photo{display:flex;justify-content:center}
+    .hero-photo img{width:min(300px, 100%);aspect-ratio:1/1;object-fit:cover;border-radius:28px;border:5px solid rgba(255,255,255,.20);box-shadow:0 18px 42px rgba(18,37,71,.25);background:#e8eef8}
+    .section{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+    .section-head{padding:24px 28px 10px}
+    .section-head h2{margin:0;font-size:1.55rem;letter-spacing:-.02em}
+    .section-body{padding:0 28px 28px}
+    .lead{color:var(--muted);margin-top:10px;max-width:900px}
+    .info-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;margin-top:14px}
+    .card{background:var(--panel-soft);border:1px solid var(--line);border-radius:22px;padding:20px;height:100%}
+    .card h3{margin:0 0 10px;font-size:1.05rem}
+    .pill{display:inline-block;padding:7px 11px;border-radius:999px;background:#eef4ff;color:#274569;border:1px solid #d8e4fb;font-size:.88rem;margin:0 8px 10px 0;font-weight:600}
+    .mini-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px;margin-top:14px}
+    .artifact-nav{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:14px;margin-top:14px}
+    .artifact-link{display:block;padding:18px;border-radius:20px;background:linear-gradient(180deg,#fbfdff,#f4f8fe);border:1px solid var(--line);color:var(--text);text-decoration:none;transition:.18s ease;box-shadow:0 8px 18px rgba(23,50,77,.05)}
+    .artifact-link:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 12px 24px rgba(23,50,77,.09)}
+    .artifact-link .num{display:inline-block;padding:6px 10px;border-radius:999px;background:#e9f0ff;color:var(--primary);font-size:.78rem;font-weight:800;margin-bottom:10px}
+    .artifact-link strong{display:block;margin-bottom:6px;font-size:1rem}
+    .artifact{margin-top:22px;border-top:1px solid var(--line);padding-top:22px}
+    .artifact:first-of-type{border-top:none;padding-top:0}
+    .artifact-header{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;margin-bottom:10px}
+    .artifact-label{display:inline-block;padding:7px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.82rem;font-weight:800;margin-bottom:10px}
+    .artifact h3{margin:0;font-size:1.45rem;letter-spacing:-.02em}
+    .artifact-sub{color:var(--muted);margin-top:6px}
+    .artifact-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .artifact-actions a{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:700;text-decoration:none;color:var(--primary)}
+    .artifact-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:16px;margin-top:18px}
+    .artifact-block{background:var(--panel-soft);border:1px solid var(--line);border-radius:20px;padding:18px}
+    .artifact-block h4{margin:0 0 8px;font-size:1rem;color:#21405f}
+    .artifact-block p, .artifact-block li{margin:0;color:#31495f;font-size:.97rem}
+    .artifact-block ul{margin:0;padding-left:18px}
+    .reference-list{margin:0;padding-left:18px}
+    .reference-list li{margin-bottom:6px}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:10px}
+    .contact-card{display:block;padding:18px;border-radius:20px;background:var(--panel-soft);border:1px solid var(--line);color:var(--text);text-decoration:none}
+    .contact-label{display:block;color:var(--muted);font-size:.86rem;margin-bottom:6px}
+    .site-footer{padding:30px 0 50px;color:var(--muted);font-size:.93rem;text-align:center}
+    @media (max-width: 1000px){
+      .hero-grid,.info-grid,.mini-grid,.artifact-nav,.artifact-grid,.contact-grid{grid-template-columns:1fr}
+      .artifact-header{grid-template-columns:1fr}
+      .hero{padding:34px 24px}.section-head{padding:22px 20px 10px}.section-body{padding:0 20px 22px}
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <div class="brand">Richards Chizhuthanickel Sunny</div>
       <nav>
-        <a href="#about">About</a>
+        <a href="#bio">Bio</a>
+        <a href="#value">Value</a>
+        <a href="#audience">Audience</a>
         <a href="#artifacts">Artifacts</a>
-        <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero container">
-      <div class="hero-text">
-        <p class="eyebrow">Professional Portfolio</p>
-        <h1>Ocean Engineer, AI/ML Graduate Student, and Applied Problem-Solver</h1>
-        <p class="lead">
-          I work at the intersection of engineering, computation, and practical innovation, with experience in numerical modeling,
-          CFD/FEA, technical research, and emerging AI/ML applications.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#artifacts">View Artifacts</a>
-          <a class="button" href="assets/Richards_C_Sunny_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+    <div class="container hero-wrap">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Professional Portfolio • AI/ML Coursework and Applied Projects</div>
+            <h1>Ocean Engineer, AI/ML Graduate Student, and Applied Problem-Solver</h1>
+            <p>
+              I work at the intersection of engineering, computation, and practical innovation, with experience in numerical modeling,
+              CFD/FEA, technical research, and emerging AI/ML applications. This portfolio presents selected artifacts that show how I
+              approach decision-support design, machine learning experimentation, AI communication, and reflective leadership.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#artifacts">Explore Artifacts</a>
+              <a class="button" href="assets/Richards_C_Sunny_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+            </div>
+          </div>
+          <div class="hero-photo">
+            <img src="assets/headshot.jpg" alt="Portrait of Richards C. Sunny" />
+          </div>
         </div>
-      </div>
-      <div class="hero-photo">
-        <img src="assets/headshot.jpg" alt="Portrait of Richards C. Sunny" />
+      </section>
+    </div>
+
+    <section id="bio" class="container section">
+      <div class="section-head"><h2>Professional Bio</h2></div>
+      <div class="section-body">
+        <div class="info-grid">
+          <div>
+            <p class="lead">
+              I am a PhD-trained ocean engineer and licensed Professional Engineer with experience spanning numerical modeling,
+              simulation, risk-informed engineering analysis, and applied research. Through my current AI/ML studies, I am expanding
+              that technical foundation into more human-centered and data-driven tools that connect analytical capability with
+              real-world decision-making.
+            </p>
+            <p>
+              My background has trained me to work carefully with uncertainty, evidence, and complex systems. As I build in AI/ML, I am
+              especially interested in practical tools that improve understanding, reduce confusion, and support more responsible decisions.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Portfolio Focus</h3>
+            <span class="pill">Applied AI/ML</span>
+            <span class="pill">Engineering Judgment</span>
+            <span class="pill">Data-Driven Problem Solving</span>
+            <span class="pill">Decision Support</span>
+            <span class="pill">Communication with Data</span>
+            <span class="pill">Reflective Leadership</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="container section">
-      <h2>About</h2>
-      <p>
-        I am a PhD-trained ocean engineer and licensed Professional Engineer with experience spanning numerical modeling,
-        simulation, risk-informed engineering analysis, and applied research. Through my current AI/ML studies, I am expanding
-        that foundation into more human-centered and data-driven tools that connect technical capability with real-world decision-making.
-      </p>
-      <p>
-        This portfolio highlights early AI and ML coursework artifacts selected for a professional audience. Each artifact reflects a different strength:
-        decision-support design, applied machine learning for engineering decision making, current issues communication in educational AI,
-        AI-guided experimental reasoning, visual communication of technical history, and reflective leadership development.
-      </p>
+    <section id="value" class="container section">
+      <div class="section-head"><h2>Personal Value Proposition</h2></div>
+      <div class="section-body">
+        <div class="card">
+          <p>
+            I bring together engineering depth, structured reasoning, and a growing AI/ML skill set to develop solutions that are not only technically sound,
+            but also interpretable, relevant, and useful to real people. My value lies in connecting analytical rigor with practical application, especially in
+            contexts where uncertainty, trade-offs, and human decision-making matter.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="audience" class="container section">
+      <div class="section-head"><h2>Target Audience</h2></div>
+      <div class="section-body">
+        <p class="lead">
+          This portfolio is designed primarily for a mixed professional audience, especially employers, collaborators, and academic reviewers interested in the
+          intersection of engineering, applied AI/ML, and evidence-based problem solving.
+        </p>
+        <div class="mini-grid">
+          <div class="card"><h3>Engineering and AI/ML Employers</h3><p>To show how I combine technical modeling, machine learning, and careful analytical reasoning in practical project work.</p></div>
+          <div class="card"><h3>Academic Reviewers</h3><p>To demonstrate coursework growth, reflective practice, and my ability to convert learning into structured and original artifacts.</p></div>
+          <div class="card"><h3>Professional Collaborators</h3><p>To present a body of work that reflects problem framing, design thinking, experimentation, and communication across technical and non-technical contexts.</p></div>
+        </div>
+      </div>
     </section>
 
     <section id="artifacts" class="container section">
-      <h2>Selected Artifacts</h2>
-      <div class="cards">
-        <article class="card featured">
-          <div class="card-content">
-            <p class="card-label">Artifact 1</p>
-            <h3>DeciWise</h3>
-            <p class="card-subtitle">A decision-support chatbot</p>
-            <p>
-              DeciWise was designed to help people think through everyday choices and important life decisions with calm,
-              clarity, and a little wisdom. The project focused on question-first interaction, trade-off comparison, and a
-              supportive conversational style rather than forcing decisions.
-            </p>
-            <ul>
-              <li>Audience-specific AI artifact for a professional portfolio</li>
-              <li>Built through design thinking and iterative refinement</li>
-              <li>Centered on user clarity, trade-offs, and reduced overwhelm</li>
-            </ul>
-            <div class="card-actions">
-              <a class="button primary" href="deciwise.html">View Project Page</a>
-              <a class="button" href="https://chatgpt.com/g/g-69aca36753d48191b93fdb0dc4c5a4b3-deciwise" target="_blank" rel="noopener">Open DeciWise</a>
-            </div>
+      <div class="section-head"><h2>Artifacts 1–4</h2></div>
+      <div class="section-body">
+        <p class="lead">
+          The four artifacts below were selected to represent different but complementary strengths: user-centered AI design, applied machine learning,
+          AI communication in education, and AI-guided experimental reasoning.
+        </p>
+        <div class="artifact-nav">
+          <a class="artifact-link" href="#artifact1"><span class="num">Artifact 1</span><strong>DeciWise</strong><span>A decision-support chatbot</span></a>
+          <a class="artifact-link" href="#artifact2"><span class="num">Artifact 2</span><strong>Predictive Maintenance Model</strong><span>Machine learning for equipment failure risk</span></a>
+          <a class="artifact-link" href="#artifact3"><span class="num">Artifact 3</span><strong>AI in Education Newsletter</strong><span>Current issues and applications artifact</span></a>
+          <a class="artifact-link" href="#artifact4"><span class="num">Artifact 4</span><strong>AI-Coached Data Challenge</strong><span>Sensitivity analysis for missing-value imputation</span></a>
+        </div>
+
+        <article class="artifact" id="artifact1">
+          <div class="artifact-header">
+            <div><div class="artifact-label">Artifact 1</div><h3>DeciWise</h3><div class="artifact-sub">A decision-support chatbot</div></div>
+            <div class="artifact-actions"><a href="deciwise.html">Project Page</a><a href="https://chatgpt.com/g/g-69aca36753d48191b93fdb0dc4c5a4b3-deciwise" target="_blank" rel="noopener">Live Prototype</a></div>
+          </div>
+          <div class="artifact-grid">
+            <div class="artifact-block"><h4>Introduction</h4><p>DeciWise was created as a simple, reflective chatbot to help users think through everyday choices and more important life decisions without feeling overwhelmed.</p></div>
+            <div class="artifact-block"><h4>Description</h4><p>The artifact centers on question-first interaction, trade-off comparison, and a conversational style that helps users clarify priorities rather than forcing decisions.</p></div>
+            <div class="artifact-block"><h4>Objective</h4><p>To design a human-centered AI tool that supports clarity, reduces indecision, and helps users compare options in a calm and structured way.</p></div>
+            <div class="artifact-block"><h4>Process</h4><ul><li>Identified a real everyday decision-making problem</li><li>Developed the chatbot concept through design thinking</li><li>Refined prompts, flow, and tone iteratively</li><li>Published the final chatbot as a shareable prototype</li></ul></div>
+            <div class="artifact-block"><h4>Tools and Tech Used</h4><p>ChatGPT custom GPT builder, prompt design, conversational flow design, GitHub Pages documentation.</p></div>
+            <div class="artifact-block"><h4>Value Proposition of the Artifact</h4><p>This artifact shows my ability to design AI systems around human needs, not only technical features.</p></div>
+            <div class="artifact-block"><h4>Unique Value</h4><p>It combines practical decision support with a calm, non-overwhelming user experience rather than a purely transactional chatbot style.</p></div>
+            <div class="artifact-block"><h4>Relevance</h4><p>Relevant to employers and collaborators interested in decision-support tools, user-centered AI design, and prompt-based system building.</p></div>
+            <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>DeciWise project page and live prototype.</li><li>Course AI Lab design-thinking workflow and development notes.</li></ul></div>
           </div>
         </article>
 
-        <article class="card">
-          <img class="artifact-image" src="assets/ai4i_feature_importance.png" alt="Predictive maintenance feature importance plot" />
-          <div class="card-content">
-            <p class="card-label">Artifact 2</p>
-            <h3>Predictive Maintenance Model</h3>
-            <p class="card-subtitle">Machine learning for equipment failure risk</p>
-            <p>
-              A machine learning project using the AI4I 2020 dataset to predict machine failure from operational and wear related
-              variables. This artifact demonstrates data preprocessing, classification modeling, evaluation, and engineering insight.
-            </p>
-            <div class="card-actions">
-              <a class="button primary" href="predictive_maintenance.html">View Project Page</a>
-            </div>
+        <article class="artifact" id="artifact2">
+          <div class="artifact-header">
+            <div><div class="artifact-label">Artifact 2</div><h3>Predictive Maintenance Model</h3><div class="artifact-sub">Machine learning for equipment failure risk</div></div>
+            <div class="artifact-actions"><a href="predictive_maintenance.html">Project Page</a></div>
+          </div>
+          <div class="artifact-grid">
+            <div class="artifact-block"><h4>Introduction</h4><p>This artifact applies machine learning to a practical industrial problem: predicting equipment failure from operational and wear-related variables.</p></div>
+            <div class="artifact-block"><h4>Description</h4><p>Using the AI4I 2020 predictive maintenance dataset, I explored preprocessing, feature influence, classification modeling, and interpretation of results in an engineering context.</p></div>
+            <div class="artifact-block"><h4>Objective</h4><p>To build and evaluate a predictive model that can help anticipate machine failure risk and support maintenance planning.</p></div>
+            <div class="artifact-block"><h4>Process</h4><ul><li>Prepared the dataset and identified the failure target</li><li>Explored feature distributions and class patterns</li><li>Built and assessed classification models</li><li>Interpreted feature importance and engineering relevance</li></ul></div>
+            <div class="artifact-block"><h4>Tools and Tech Used</h4><p>Python, pandas, scikit-learn, data visualization tools, classification workflows, GitHub Pages documentation.</p></div>
+            <div class="artifact-block"><h4>Value Proposition of the Artifact</h4><p>This project demonstrates that I can connect machine learning workflows to applied engineering reasoning, not just abstract model performance.</p></div>
+            <div class="artifact-block"><h4>Unique Value</h4><p>The artifact combines ML workflow design with practical understanding of industrial maintenance risk.</p></div>
+            <div class="artifact-block"><h4>Relevance</h4><p>Relevant to organizations working in industrial analytics, reliability engineering, and predictive maintenance decision support.</p></div>
+            <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>Matzka, S. (2020). AI4I 2020 Predictive Maintenance Dataset. UCI Machine Learning Repository.</li><li>Predictive maintenance project documentation and project page.</li></ul></div>
           </div>
         </article>
 
-        <article class="card">
-          <img class="artifact-image" src="assets/ai_education_newsletter_preview.png" alt="AI in Education newsletter preview" />
-          <div class="card-content">
-            <p class="card-label">Artifact 3</p>
-            <h3>AI in Education Newsletter</h3>
-            <p class="card-subtitle">Current issues and applications artifact</p>
-            <p>
-              A professional HTML newsletter exploring five major AI applications in education, including personalized learning,
-              intelligent tutoring, assessment and feedback, teacher support tools, and accessibility. This artifact also integrates
-              recent 2025 to 2026 developments to connect foundational ideas with current real-world adoption and concerns.
-            </p>
-            <div class="card-actions">
-              <a class="button primary" href="education_newsletter.html">View Project Page</a>
-            </div>
+        <article class="artifact" id="artifact3">
+          <div class="artifact-header">
+            <div><div class="artifact-label">Artifact 3</div><h3>AI in Education Newsletter</h3><div class="artifact-sub">Current issues and applications artifact</div></div>
+            <div class="artifact-actions"><a href="education_newsletter.html">Project Page</a></div>
+          </div>
+          <div class="artifact-grid">
+            <div class="artifact-block"><h4>Introduction</h4><p>This artifact takes the form of a professional HTML newsletter exploring how AI is being used across multiple areas of education.</p></div>
+            <div class="artifact-block"><h4>Description</h4><p>The newsletter covers personalized learning, intelligent tutoring, assessment and feedback, teacher-support tools, and accessibility, while also acknowledging current ethical and implementation concerns.</p></div>
+            <div class="artifact-block"><h4>Objective</h4><p>To communicate current AI developments in education in a professional, accessible, and audience-aware format.</p></div>
+            <div class="artifact-block"><h4>Process</h4><ul><li>Reviewed recent use cases and developments in educational AI</li><li>Selected five major application areas</li><li>Structured the content into a professional newsletter format</li><li>Designed the final artifact for online sharing and readability</li></ul></div>
+            <div class="artifact-block"><h4>Tools and Tech Used</h4><p>HTML/CSS, newsletter-style layout design, source synthesis, GitHub Pages publication.</p></div>
+            <div class="artifact-block"><h4>Value Proposition of the Artifact</h4><p>This artifact shows my ability to translate AI topics into clear communication for a broader professional audience.</p></div>
+            <div class="artifact-block"><h4>Unique Value</h4><p>It bridges technical AI content with current educational practice, policy, and communication design.</p></div>
+            <div class="artifact-block"><h4>Relevance</h4><p>Relevant to educators, administrators, and professionals who need to understand not only what AI can do, but how it is shaping real educational systems.</p></div>
+            <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>UNESCO. (2023). Guidance for generative AI in education and research.</li><li>Artifact project page and curated source summary within the newsletter.</li></ul></div>
           </div>
         </article>
 
-        <article class="card">
-          <div class="card-content">
-            <p class="card-label">Artifact 4</p>
-            <h3>AI-Coached Data Challenge</h3>
-            <p class="card-subtitle">Sensitivity analysis for missing-value imputation</p>
-            <p>
-              An applied machine learning challenge in which I used an AI chatbot coach to refine, test, and implement
-              a sensitivity-analysis workflow for missing-value imputation. Using the UCI Student Performance dataset,
-              I evaluated whether mean imputation on <code>studytime</code> was acceptable before final model use.
-            </p>
-            <div class="card-actions">
-              <a class="button primary" href="coached_data.html">View Project Page</a>
-            </div>
+        <article class="artifact" id="artifact4">
+          <div class="artifact-header">
+            <div><div class="artifact-label">Artifact 4</div><h3>AI-Coached Data Challenge</h3><div class="artifact-sub">Sensitivity analysis for missing-value imputation</div></div>
+            <div class="artifact-actions"><a href="artifact4-ai-coached-data-challenge.html">Project Page</a></div>
           </div>
-        </article>
-
-        <article class="card">
-          <img class="artifact-image" src="assets/ai_ml_timeline.png" alt="AI and ML visual timeline" />
-          <div class="card-content">
-            <p class="card-label">Artifact 5</p>
-            <h3>AI and ML Timeline</h3>
-            <p class="card-subtitle">Visual communication artifact</p>
-            <p>
-              A visually designed timeline that presents major milestones, AI winters, and recent breakthroughs in artificial intelligence
-              and machine learning. This artifact demonstrates historical synthesis, visual design, and audience-oriented communication.
-            </p>
-            <div class="card-actions">
-              <a class="button primary" href="timeline.html">View Project Page</a>
-              <a class="button" href="timeline_interactive.html">Open Interactive Timeline</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-content">
-            <p class="card-label">Artifact 6</p>
-            <h3>Leadership Self-Assessment Tool</h3>
-            <p class="card-subtitle">Interactive reflection artifact</p>
-            <p>
-              A web-based self-assessment experience that translates leadership reflection work into a usable professional tool with
-              scoring, visual summaries, and downloadable reports.
-            </p>
-            <div class="card-actions">
-              <a class="button primary" href="leadership.html">View Project Page</a>
-              <a class="button" href="leadership_tool.html">Open Tool</a>
-            </div>
+          <div class="artifact-grid">
+            <div class="artifact-block"><h4>Introduction</h4><p>This artifact documents an AI-guided machine learning challenge built around a practical data-quality problem: deciding whether an imputation method is acceptable before using it in a final model.</p></div>
+            <div class="artifact-block"><h4>Description</h4><p>Using the UCI Student Performance dataset, I designed a sensitivity-analysis workflow to test whether mean imputation for the <code>studytime</code> variable would introduce unacceptable variation in predicted student grades.</p></div>
+            <div class="artifact-block"><h4>Objective</h4><p>To develop a more defensible approach to missing-value handling by measuring how an imputation choice affects model learning and prediction stability.</p></div>
+            <div class="artifact-block"><h4>Process</h4><ul><li>Defined a testing framework using D0, D1, S_base, and S_mask</li><li>Worked with an AI coaching bot to refine the experiment</li><li>Implemented the workflow in Python</li><li>Evaluated the method using RMSE, delta statistics, and cross-validation</li></ul></div>
+            <div class="artifact-block"><h4>Tools and Tech Used</h4><p>Python, pandas, NumPy, scikit-learn, RandomForestRegressor, SimpleImputer, cross-validation, SchoolAI coaching support.</p></div>
+            <div class="artifact-block"><h4>Value Proposition of the Artifact</h4><p>This project shows that I can combine machine learning reasoning, experimental design, and AI-supported problem solving in a disciplined way.</p></div>
+            <div class="artifact-block"><h4>Unique Value</h4><p>Unlike a standard preprocessing exercise, this artifact focuses on validating the effect of imputation itself rather than assuming the method is harmless.</p></div>
+            <div class="artifact-block"><h4>Relevance</h4><p>Relevant to employers and reviewers interested in careful model preparation, reproducible evaluation, and thoughtful human-AI collaboration.</p></div>
+            <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>Cortez, P., &amp; Silva, A. M. G. (2008). Using data mining to predict secondary school student performance.</li><li>UCI Student Performance dataset documentation.</li><li>Artifact project page and implementation summary.</li></ul></div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="resume" class="container section">
-      <h2>Resume</h2>
-      <p>
-        My resume provides a broader view of my background in engineering, numerical modeling, technical research, and emerging AI/ML work.
-      </p>
-      <a class="button primary" href="assets/Richards_C_Sunny_Resume.pdf" target="_blank" rel="noopener">Open Resume PDF</a>
+    <section class="container section">
+      <div class="section-head"><h2>Additional Portfolio Artifacts</h2></div>
+      <div class="section-body">
+        <div class="mini-grid">
+          <div class="card"><h3>Artifact 5: AI and ML Timeline</h3><p>A visual communication artifact presenting key milestones, AI winters, and modern breakthroughs.</p><a href="timeline.html">View project</a></div>
+          <div class="card"><h3>Artifact 6: Leadership Self-Assessment Tool</h3><p>An interactive reflection artifact that converts leadership assessment work into a usable professional tool.</p><a href="leadership.html">View project</a></div>
+          <div class="card"><h3>Resume</h3><p>My full resume provides a broader view of my engineering, simulation, research, and AI/ML background.</p><a href="assets/Richards_C_Sunny_Resume.pdf" target="_blank" rel="noopener">Open resume</a></div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="container section contact">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <a class="contact-card" href="mailto:r.chizhuthanickelsun@myemail.indwes.edu">
-          <span class="contact-label">Email</span>
-          <strong>r.chizhuthanickelsun@myemail.indwes.edu</strong>
-        </a>
-        <a class="contact-card" href="https://www.linkedin.com/in/richards-c-sunny" target="_blank" rel="noopener">
-          <span class="contact-label">LinkedIn</span>
-          <strong>linkedin.com/in/richards-c-sunny</strong>
-        </a>
-        <a class="contact-card" href="https://scholar.google.com/citations?user=VUXYkFkAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
-          <span class="contact-label">Google Scholar</span>
-          <strong>View publications and citations</strong>
-        </a>
+    <section id="contact" class="container section">
+      <div class="section-head"><h2>Contact</h2></div>
+      <div class="section-body">
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:r.chizhuthanickelsun@myemail.indwes.edu"><span class="contact-label">Email</span><strong>r.chizhuthanickelsun@myemail.indwes.edu</strong></a>
+          <a class="contact-card" href="https://www.linkedin.com/in/richards-c-sunny" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><strong>linkedin.com/in/richards-c-sunny</strong></a>
+          <a class="contact-card" href="https://scholar.google.com/citations?user=VUXYkFkAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener"><span class="contact-label">Google Scholar</span><strong>View publications and citations</strong></a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2026 Richards C. Sunny. Built as a professional portfolio site.</p>
+      <p>© 2026 Richards C. Sunny. Built as a professional portfolio for AI/ML coursework and applied project presentation.</p>
     </div>
   </footer>
 </body>
