@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoWise Finder | Used Car Decision-Support Tool</title>
+  <meta name="description" content="AutoWise Finder is an AI-assisted used car decision-support prototype that ranks vehicles using affordability, reliability, resale value, mileage risk, ownership cost, and buyer preferences." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">AW</div>
+        <div>
+          <p class="eyebrow">AIML 500 Portfolio Artifact</p>
+          <h1>AutoWise Finder</h1>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="printBtn" class="btn btn-secondary" type="button">Print Results</button>
+        <button id="exportBtn" class="btn btn-primary" type="button">Export JSON</button>
+      </div>
+    </nav>
+
+    <section class="hero-grid">
+      <div>
+        <p class="tag">AI-assisted decision support for used car selection</p>
+        <h2>Rank cars by what matters most to the buyer.</h2>
+        <p class="lead">
+          AutoWise Finder helps a buyer compare used vehicles using transparent scoring:
+          affordability, seating needs, reliability, resale value, mileage risk, ownership cost,
+          comfort, and accident/title risk.
+        </p>
+        <div class="hero-actions">
+          <a href="#questionnaire" class="btn btn-primary">Start Ranking</a>
+          <a href="#methodology" class="btn btn-ghost">View Methodology</a>
+        </div>
+      </div>
+
+      <div class="score-preview">
+        <p class="preview-label">Decision Model</p>
+        <div class="ring">
+          <span>100</span>
+          <small>point score</small>
+        </div>
+        <ul>
+          <li>Buyer-specific questionnaire</li>
+          <li>Weighted ranking logic</li>
+          <li>Explainable recommendations</li>
+          <li>5-year ownership estimate</li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="panel intro-panel">
+      <div>
+        <p class="section-label">Artifact Purpose</p>
+        <h2>From car search to decision intelligence</h2>
+        <p>
+          Dealer websites usually sort by price, year, or mileage. This prototype goes further by
+          turning buyer preferences into a decision score and explaining why each vehicle is ranked.
+          It is not a live dealer search engine; it is a responsible decision-support prototype that can
+          evaluate sample vehicles or user-entered real listings.
+        </p>
+      </div>
+      <div class="mini-cards">
+        <div class="mini-card">
+          <strong>Input</strong>
+          <span>Buyer needs and listings</span>
+        </div>
+        <div class="mini-card">
+          <strong>Model</strong>
+          <span>Weighted scoring algorithm</span>
+        </div>
+        <div class="mini-card">
+          <strong>Output</strong>
+          <span>Ranked and explained results</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="questionnaire" class="layout">
+      <aside class="panel form-panel">
+        <p class="section-label">Buyer Profile</p>
+        <h2>Tell AutoWise what matters</h2>
+
+        <form id="buyerForm">
+          <div class="form-row">
+            <label for="zipCode">ZIP code</label>
+            <input id="zipCode" type="text" maxlength="10" value="77479" />
+          </div>
+
+          <div class="form-row two">
+            <div>
+              <label for="budget">Maximum budget ($)</label>
+              <input id="budget" type="number" min="3000" step="500" value="20000" />
+            </div>
+            <div>
+              <label for="monthlyTarget">Target monthly payment ($)</label>
+              <input id="monthlyTarget" type="number" min="100" step="25" value="300" />
+            </div>
+          </div>
+
+          <div class="form-row two">
+            <div>
+              <label for="downPayment">Down payment ($)</label>
+              <input id="downPayment" type="number" min="0" step="500" value="4000" />
+            </div>
+            <div>
+              <label for="apr">APR (%)</label>
+              <input id="apr" type="number" min="0" step="0.1" value="7.0" />
+            </div>
+          </div>
+
+          <div class="form-row two">
+            <div>
+              <label for="loanMonths">Loan term</label>
+              <select id="loanMonths">
+                <option value="48">48 months</option>
+                <option value="60">60 months</option>
+                <option value="65">65 months</option>
+                <option value="72" selected>72 months</option>
+              </select>
+            </div>
+            <div>
+              <label for="keepYears">Years you plan to keep it</label>
+              <select id="keepYears">
+                <option value="3">3 years</option>
+                <option value="5" selected>5 years</option>
+                <option value="7">7 years</option>
+                <option value="10">10 years</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row two">
+            <div>
+              <label for="seats">Minimum seats</label>
+              <select id="seats">
+                <option value="5">5 seats</option>
+                <option value="6">6 seats</option>
+                <option value="7" selected>7 seats</option>
+                <option value="8">8 seats</option>
+              </select>
+            </div>
+            <div>
+              <label for="maxMileage">Maximum mileage</label>
+              <input id="maxMileage" type="number" min="20000" step="5000" value="110000" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="bodyType">Preferred body type</label>
+            <select id="bodyType">
+              <option value="any" selected>Any family vehicle</option>
+              <option value="suv">SUV / crossover</option>
+              <option value="minivan">Minivan</option>
+              <option value="luxury">Comfort/luxury SUV</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="accidentTolerance">Accident history tolerance</label>
+            <select id="accidentTolerance">
+              <option value="none">No accident history preferred</option>
+              <option value="minor" selected>Minor accident okay if inspected</option>
+              <option value="flexible">Flexible if price is strong</option>
+            </select>
+          </div>
+
+          <div class="slider-group">
+            <label for="reliabilityWeight">Reliability importance <span id="reliabilityValue">9</span>/10</label>
+            <input id="reliabilityWeight" type="range" min="1" max="10" value="9" />
+          </div>
+
+          <div class="slider-group">
+            <label for="resaleWeight">Resale value importance <span id="resaleValue">8</span>/10</label>
+            <input id="resaleWeight" type="range" min="1" max="10" value="8" />
+          </div>
+
+          <div class="slider-group">
+            <label for="comfortWeight">Comfort / beauty importance <span id="comfortValue">6</span>/10</label>
+            <input id="comfortWeight" type="range" min="1" max="10" value="6" />
+          </div>
+
+          <div class="slider-group">
+            <label for="costWeight">Lowest cost importance <span id="costValue">8</span>/10</label>
+            <input id="costWeight" type="range" min="1" max="10" value="8" />
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary full" type="submit">Rank Vehicles</button>
+            <button class="btn btn-secondary full" id="resetBtn" type="button">Reset Profile</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="results-area">
+        <div class="panel">
+          <div class="results-header">
+            <div>
+              <p class="section-label">Recommendations</p>
+              <h2>Top ranked vehicles</h2>
+            </div>
+            <div class="sort-filter">
+              <label for="sortBy">Sort by</label>
+              <select id="sortBy">
+                <option value="score">Best overall score</option>
+                <option value="price">Lowest price</option>
+                <option value="monthly">Lowest payment</option>
+                <option value="resale">Best resale</option>
+                <option value="reliability">Best reliability</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="summaryCards" class="summary-cards"></div>
+          <div id="results" class="results"></div>
+        </div>
+
+        <div class="panel">
+          <div class="results-header">
+            <div>
+              <p class="section-label">Search Helper</p>
+              <h2>Generated real-market search links</h2>
+            </div>
+          </div>
+          <p class="muted">
+            These buttons create useful search links based on your profile. This keeps the artifact safe for GitHub Pages
+            without scraping dealer websites.
+          </p>
+          <div id="searchLinks" class="link-grid"></div>
+        </div>
+
+        <div class="panel">
+          <div class="results-header">
+            <div>
+              <p class="section-label">Add Real Listing</p>
+              <h2>Paste your own car to compare</h2>
+            </div>
+          </div>
+
+          <form id="customCarForm" class="custom-form">
+            <div class="form-row two">
+              <div>
+                <label for="carName">Vehicle name</label>
+                <input id="carName" type="text" placeholder="2018 Honda Pilot EX-L" />
+              </div>
+              <div>
+                <label for="carLink">Listing link</label>
+                <input id="carLink" type="url" placeholder="https://..." />
+              </div>
+            </div>
+
+            <div class="form-row four">
+              <div>
+                <label for="carYear">Year</label>
+                <input id="carYear" type="number" min="2000" max="2026" value="2018" />
+              </div>
+              <div>
+                <label for="carPrice">Price</label>
+                <input id="carPrice" type="number" min="1000" step="500" value="19000" />
+              </div>
+              <div>
+                <label for="carMileage">Mileage</label>
+                <input id="carMileage" type="number" min="0" step="5000" value="85000" />
+              </div>
+              <div>
+                <label for="carSeats">Seats</label>
+                <input id="carSeats" type="number" min="2" max="9" value="7" />
+              </div>
+            </div>
+
+            <div class="form-row four">
+              <div>
+                <label for="carType">Type</label>
+                <select id="carType">
+                  <option value="suv">SUV</option>
+                  <option value="minivan">Minivan</option>
+                  <option value="luxury">Luxury SUV</option>
+                  <option value="sedan">Sedan</option>
+                </select>
+              </div>
+              <div>
+                <label for="carAccident">Accident</label>
+                <select id="carAccident">
+                  <option value="none">None</option>
+                  <option value="minor">Minor</option>
+                  <option value="major">Major</option>
+                </select>
+              </div>
+              <div>
+                <label for="carReliability">Reliability</label>
+                <input id="carReliability" type="number" min="1" max="10" value="8" />
+              </div>
+              <div>
+                <label for="carResale">Resale</label>
+                <input id="carResale" type="number" min="1" max="10" value="8" />
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Add Listing and Re-rank</button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <section id="methodology" class="panel methodology">
+      <p class="section-label">Transparent Methodology</p>
+      <h2>How AutoWise scores vehicles</h2>
+      <div class="method-grid">
+        <div>
+          <h3>Base scoring categories</h3>
+          <ul class="check-list">
+            <li>Budget fit and estimated payment</li>
+            <li>Seat capacity and family fit</li>
+            <li>Reliability and maintenance risk</li>
+            <li>Resale value and depreciation estimate</li>
+            <li>Mileage, age, accident/title risk</li>
+            <li>Comfort and personal preference</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Responsible AI framing</h3>
+          <p>
+            This prototype avoids claiming certainty. It uses explainable, adjustable scoring rather than hidden recommendations.
+            The tool supports human judgment and encourages inspection, test drives, vehicle history checks, and professional
+            pre-purchase inspection before any buying decision.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      AutoWise Finder is an educational AIML 500 portfolio artifact and should not be treated as financial,
+      legal, mechanical, or dealership advice.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
