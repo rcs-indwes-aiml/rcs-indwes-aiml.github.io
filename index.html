@@ -45,7 +45,7 @@
     .card h3{margin:0 0 10px;font-size:1.05rem}
     .pill{display:inline-block;padding:7px 11px;border-radius:999px;background:#eef4ff;color:#274569;border:1px solid #d8e4fb;font-size:.88rem;margin:0 8px 10px 0;font-weight:600}
     .mini-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px;margin-top:14px}
-    .artifact-nav{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:14px;margin-top:14px}
+    .artifact-nav{display:grid;grid-template-columns:repeat(auto-fit, minmax(190px,1fr));gap:14px;margin-top:14px}
     .artifact-link{display:block;padding:18px;border-radius:20px;background:linear-gradient(180deg,#fbfdff,#f4f8fe);border:1px solid var(--line);color:var(--text);text-decoration:none;transition:.18s ease;box-shadow:0 8px 18px rgba(23,50,77,.05)}
     .artifact-link:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 12px 24px rgba(23,50,77,.09)}
     .artifact-link .num{display:inline-block;padding:6px 10px;border-radius:999px;background:#e9f0ff;color:var(--primary);font-size:.78rem;font-weight:800;margin-bottom:10px}
@@ -172,17 +172,18 @@
     </section>
 
     <section id="artifacts" class="container section">
-      <div class="section-head"><h2>Artifacts 1–4</h2></div>
+      <div class="section-head"><h2>Artifacts 1–5</h2></div>
       <div class="section-body">
         <p class="lead">
-          The four artifacts below were selected to represent different but complementary strengths: user-centered AI design, applied machine learning,
-          AI communication in education, and AI-guided experimental reasoning.
+          The five artifacts below were selected to represent different but complementary strengths: user-centered AI design, applied machine learning,
+          AI communication in education, AI-guided experimental reasoning, and practical decision-support modeling.
         </p>
         <div class="artifact-nav">
           <a class="artifact-link" href="#artifact1"><span class="num">Artifact 1</span><strong>DeciWise</strong><span>A decision-support chatbot</span></a>
           <a class="artifact-link" href="#artifact2"><span class="num">Artifact 2</span><strong>Predictive Maintenance Model</strong><span>Machine learning for equipment failure risk</span></a>
           <a class="artifact-link" href="#artifact3"><span class="num">Artifact 3</span><strong>AI in Education Newsletter</strong><span>Current issues and applications artifact</span></a>
           <a class="artifact-link" href="#artifact4"><span class="num">Artifact 4</span><strong>AI-Coached Data Challenge</strong><span>Sensitivity analysis for missing-value imputation</span></a>
+          <a class="artifact-link" href="#artifact5"><span class="num">Artifact 5</span><strong>AutoWise Finder</strong><span>Used car decision-support ranking tool</span></a>
         </div>
 
         <article class="artifact" id="artifact1">
@@ -256,6 +257,25 @@
             <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>Cortez, P., &amp; Silva, A. M. G. (2008). Using data mining to predict secondary school student performance.</li><li>UCI Student Performance dataset documentation.</li><li>Artifact project page and implementation summary.</li></ul></div>
           </div>
         </article>
+
+        <article class="artifact" id="artifact5">
+          <div class="artifact-header">
+            <div><div class="artifact-label">Artifact 5</div><h3>AutoWise Finder</h3><div class="artifact-sub">A decision-support tool for used car selection</div></div>
+            <div class="artifact-actions"><a href="autowise-finder/index.html">Project Page</a></div>
+          </div>
+          <div class="artifact-grid">
+            <div class="artifact-block"><h4>Introduction</h4><p>AutoWise Finder was created as an interactive decision-support prototype to help used-car buyers compare options more thoughtfully than a simple price or mileage sort.</p></div>
+            <div class="artifact-block"><h4>Description</h4><p>The tool asks for buyer preferences such as budget, monthly payment target, seating needs, mileage limit, accident tolerance, reliability priority, resale value, and comfort preference. It then ranks vehicles using a transparent weighted scoring model.</p></div>
+            <div class="artifact-block"><h4>Objective</h4><p>To design a practical AI/ML-inspired recommendation artifact that supports better consumer decision-making through scoring, ranking, cost estimation, and explainable recommendations.</p></div>
+            <div class="artifact-block"><h4>Process</h4><ul><li>Defined the buyer decision problem and key trade-off factors</li><li>Created a weighted scoring model for vehicle comparison</li><li>Built a static GitHub Pages web app using HTML, CSS, and JavaScript</li><li>Added explainable ranking, estimated payment, resale estimate, ownership-cost estimate, and real-market search links</li></ul></div>
+            <div class="artifact-block"><h4>Tools and Tech Used</h4><p>HTML, CSS, JavaScript, GitHub Pages, scoring logic, user-input forms, explainable recommendation design, and static web deployment.</p></div>
+            <div class="artifact-block"><h4>Value Proposition of the Artifact</h4><p>This artifact demonstrates how AI/ML thinking can be applied to an everyday financial and family decision by converting preferences and constraints into a transparent ranking system.</p></div>
+            <div class="artifact-block"><h4>Unique Value</h4><p>Unlike a normal car search page, AutoWise Finder focuses on decision quality. It considers affordability, reliability, resale value, family fit, mileage risk, comfort, accident risk, and ownership cost together.</p></div>
+            <div class="artifact-block"><h4>Relevance</h4><p>Relevant to employers and reviewers interested in applied AI/ML, human-centered decision support, explainable scoring systems, and practical web-based prototypes.</p></div>
+            <div class="artifact-block" style="grid-column:1 / -1;"><h4>References</h4><ul class="reference-list"><li>AutoWise Finder project page and implementation files.</li><li>Course concepts related to data-driven decision-making, responsible AI design, and explainable recommendations.</li></ul></div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -263,8 +283,8 @@
       <div class="section-head"><h2>Additional Portfolio Artifacts</h2></div>
       <div class="section-body">
         <div class="mini-grid">
-          <div class="card"><h3>Artifact 5: AI and ML Timeline</h3><p>A visual communication artifact presenting key milestones, AI winters, and modern breakthroughs.</p><a href="timeline.html">View project</a></div>
-          <div class="card"><h3>Artifact 6: Leadership Self-Assessment Tool</h3><p>An interactive reflection artifact that converts leadership assessment work into a usable professional tool.</p><a href="leadership.html">View project</a></div>
+          <div class="card"><h3>Artifact 6: AI and ML Timeline</h3><p>A visual communication artifact presenting key milestones, AI winters, and modern breakthroughs.</p><a href="timeline.html">View project</a></div>
+          <div class="card"><h3>Artifact 7: Leadership Self-Assessment Tool</h3><p>An interactive reflection artifact that converts leadership assessment work into a usable professional tool.</p><a href="leadership.html">View project</a></div>
           <div class="card"><h3>Resume</h3><p>My full resume provides a broader view of my engineering, simulation, research, and AI/ML background.</p><a href="assets/Richards_C_Sunny_Resume.pdf" target="_blank" rel="noopener">Open resume</a></div>
         </div>
       </div>
